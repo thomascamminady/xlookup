@@ -35,7 +35,9 @@ def main():
                 "The Names and Values fields need to have the same number of inputs. Not continuing."
             )
         else:
-            reference_dict = dict(zip(list_reference_names, list_reference_ids))
+            reference_dict = dict(
+                zip(list_reference_names, list_reference_ids, strict=True)
+            )
             list_lookup_ids = [
                 reference_dict[name] if name in reference_dict else not_found_value
                 for name in list_lookup_names
@@ -48,7 +50,7 @@ def main():
             with col5:
                 list_combined = [
                     f"{name},{id}"
-                    for name, id in zip(list_lookup_names, list_lookup_ids)
+                    for name, id in zip(list_lookup_names, list_lookup_ids, strict=True)
                 ]
                 st.write("Names and looked up values.")
                 st.code("\n".join(list_combined))
